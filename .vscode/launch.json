@@ -1,0 +1,37 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Lunch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceRoot}/src/app",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./~/*": "${workspaceRoot}/node_modules/*",
+        "webpack:///./src/*": "${workspaceRoot}/src/*"
+      },
+      "userDataDir": "${workspaceRoot}/.vscode/chrome",
+      "runtimeArgs": [
+        "--disable-session-crashed-bubble"
+      ]
+    },
+    {
+      "name": "Attach Chrome",
+      "type": "chrome",
+      "request": "attach",
+      "url": "http://localhost:4200",
+      "port": 9222,
+      "webRoot": "${workspaceRoot}/src/app",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./~/*": "${workspaceRoot}/node_modules/*",
+        "webpack:///./src/*": "${workspaceRoot}/src/*"
+      }
+    }
+  ]
+}

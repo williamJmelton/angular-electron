@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { InventoryService } from '../../providers/inventory.service';
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
@@ -26,6 +26,7 @@ export class ItemsComponent implements OnInit {
   scanCode = '';
   itemToBeAdded: Item = new Item();
   quantity = 1;
+  @ViewChild('table') tableRef: ElementRef;
 
   constructor(
     private _inventoryService: InventoryService,
@@ -50,7 +51,13 @@ export class ItemsComponent implements OnInit {
       width: '900px',
       data: { id: ID }
     });
+
+    dialogRef.afterClosed().subscribe(data => {
+      console.log('the dialog has been closed');
+      this.getData();
+    });
   }
+
 
   // highlight the row clicked based on the index of it
   highlight(row) {
@@ -147,6 +154,10 @@ export class EditItemDialogComponent {
 
   OnInit() {
     this.id = this.data.id;
+  }
+
+  save() {
+    this.dialogRef.close();
   }
 
   onNoClick(): void {
