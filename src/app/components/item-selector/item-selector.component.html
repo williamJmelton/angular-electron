@@ -1,0 +1,14 @@
+<form style="display: flex" (submit)="submit()" class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" id="item-selector" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option dense *ngFor="let option of filteredOptions | async" [value]="option">
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" id="quantity" [(ngModel)]="quantity" name="quantity">
+  </mat-form-field>
+  <button type="submit" style="display:none">hidden submit</button>
+</form>

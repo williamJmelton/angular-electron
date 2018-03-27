@@ -5,33 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Lunch Chrome",
+      "name": "Electron: Renderer",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:4200",
-      "webRoot": "${workspaceRoot}/src/app",
-      "sourceMaps": true,
-      "sourceMapPathOverrides": {
-        "webpack:///./~/*": "${workspaceRoot}/node_modules/*",
-        "webpack:///./src/*": "${workspaceRoot}/src/*"
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+      "windows": {
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
       },
-      "userDataDir": "${workspaceRoot}/.vscode/chrome",
       "runtimeArgs": [
-        "--disable-session-crashed-bubble"
-      ]
-    },
-    {
-      "name": "Attach Chrome",
-      "type": "chrome",
-      "request": "attach",
-      "url": "http://localhost:4200",
-      "port": 9222,
-      "webRoot": "${workspaceRoot}/src/app",
-      "sourceMaps": true,
-      "sourceMapPathOverrides": {
-        "webpack:///./~/*": "${workspaceRoot}/node_modules/*",
-        "webpack:///./src/*": "${workspaceRoot}/src/*"
-      }
-    }
+            "${workspaceRoot}/main.js",
+            "--remote-debugging-port=9222"
+      ],
+      "timeout": 30000,
+      //"preLaunchTask": "npmStart",
+      "webRoot": "${workspaceRoot}"
+   }
   ]
 }

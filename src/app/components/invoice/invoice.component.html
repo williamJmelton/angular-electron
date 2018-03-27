@@ -27,6 +27,7 @@
       <mat-row [ngClass]="{'highlight': selectedRowIndex == i}" *matRowDef="let row; columns: displayedColumns; let i = index"></mat-row>
     </mat-table>
   </div>
+  <app-item-selector></app-item-selector>
 
   <p>Total: {{this.total | currency: 'USD'}}</p>
 </div>

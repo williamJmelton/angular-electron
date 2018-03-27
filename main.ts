@@ -40,7 +40,8 @@ function createWindow() {
     }));
   }
 
-  win.webContents.openDevTools();
+  // load dev tools on app start
+  // win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {

@@ -53,7 +53,7 @@ export class InvoiceComponent implements OnInit {
             this.customerIsSelected = true;
             console.log('customer selected is: ' + this.customerIsSelected);
             this.selectedCustomer = customer;
-        })
+        });
     }
 
     // tslint:disable-next-line:use-life-cycle-interface

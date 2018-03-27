@@ -4,7 +4,7 @@ import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -30,12 +30,14 @@ import { InvoicingComponent } from './components/invoicing/invoicing.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { ScancodesComponent } from './components/scancodes/scancodes.component';
+import { ItemSelectorComponent } from './components/item-selector/item-selector.component';
 
 // Material Components for the application
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
 import {MatInputModule} from '@angular/material/';
 import {MatSelectModule} from '@angular/material/';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -48,6 +50,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 // Application Providers
@@ -71,12 +74,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditItemDialogComponent,
     CustomersComponent,
     InvoicingComponent,
-    ScancodesComponent
+    ScancodesComponent,
+    ItemSelectorComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     HttpClientModule,
     AppRoutingModule,

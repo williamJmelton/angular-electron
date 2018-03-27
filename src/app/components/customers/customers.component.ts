@@ -37,7 +37,6 @@ export class CustomersComponent implements OnInit {
     // At component initialization the
     this._inventoryService.getCustomers().subscribe( customers => {
       // assign the todolist property to the proper http response
-      console.log(customers);
       this.Customers = new MatTableDataSource(customers);
     });
   }
