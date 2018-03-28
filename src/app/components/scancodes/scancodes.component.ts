@@ -19,73 +19,18 @@ export class ScancodesComponent implements OnInit {
   quantity = 1;
   itemToBeAdded: Item = new Item();
   customerNames: Array<any>;
-  // customerNames = ['Ali', 'Mohommad'];
   myControl: FormControl = new FormControl();
   filteredOptions: Observable<string[]>;
   searchTerm: FormControl = new FormControl();
 
-  // debug vars
-  submittedItem: Object;
-
   constructor(private _inventoryService: InventoryService) {}
 
   ngOnInit() {
-    this.getCustomerNames();
-  }
-
-  submit() {
-      console.log(this.myControl.value);
-  }
-
-  getCustomerNames() {
-    this._inventoryService.getCustomerNamesList().subscribe(names => {
-    //   const customerNames = [];
-    //   names.forEach(element => {
-    //     customerNames.push(element.customerName);
-    //   });
-      this.customerNames = names; // customerNames;
-      console.log('in the getCustomerNames Subscription' , this.customerNames);
-      // try using new filter func
-      this.filteredOptions = this.myControl.valueChanges.pipe(
-          startWith(''),
-        //   map(val => this.filter(val))
-        map(customer => customer ? this.filter(customer) : this.customerNames.slice())
-        );
-    });
-  }
-
-  filter(val: string): string[] {
-    return this.customerNames.filter(
-      option => option.customerName.toLowerCase().indexOf(val) === 0
-    );
-  }
-
-  displayFn(customer?: Customer): string | undefined {
-    return customer ? customer.customerName : undefined;
   }
   // -----------------------------------------------------------------------------------------
   // push the scanned item to the inventory services invoice list
   addItemToInvoice(item) {
-    let isThere = false;
-    // checkif the item is in the invoice already
-    for (let i = 0; i < this._inventoryService.OrderedItems.length; i++) {
-      // we are going through each item in the array here...
-      if (this._inventoryService.OrderedItems[i].name === item.name) {
-        // if we are here, the item has been found already...
-        this._inventoryService.OrderedItems[i].orderQty += this.quantity;
-        isThere = true;
-        break;
-      }
-    }
-    // if we don't find the item in the array, do that logic here.
-    if (!isThere) {
-      this._inventoryService.OrderedItems.push(item);
-    }
-    // submit the modified array to the inventory service for safekeeping.
-    console.log(this._inventoryService.OrderedItems);
-    this._inventoryService.sendItemToInvoice(
-      this._inventoryService.OrderedItems
-    );
+    this._inventoryService.handleNewInvoicePayload(item, this.quantity);
   }
   // --------------------------------------------------------------------------------------------
   // checks if the scancode submited isn't null and then sends the job to updateSelectedItemByScanCode

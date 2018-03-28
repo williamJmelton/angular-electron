@@ -73,6 +73,7 @@ export class CustomersComponent implements OnInit {
 
 //  --------------------------------------------------------------------------------------------------
 // This is just the component for the Dialog that spawns when clicking the edit item icon on the data table. Mostly can be ignored.
+// comment for pushing change to github
 @Component({
   selector: 'app-edit-dialog',
   template: `<app-item itemID='{{data.id}}'></app-item>`

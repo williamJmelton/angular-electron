@@ -16,7 +16,6 @@ import Customer from '../../models/customer.model';
 })
 export class ItemSelectorComponent implements OnInit {
   itemNames: Array<any>;
-  // customerNames = ['Ali', 'Mohommad'];
   myControl: FormControl = new FormControl();
   filteredOptions: Observable<string[]>;
   searchTerm: FormControl = new FormControl();
@@ -31,6 +30,7 @@ export class ItemSelectorComponent implements OnInit {
   submit() {
     this.addItemToInvoice(this.myControl.value);
     this.myControl.setValue('');
+    this.quantity = 1;
     document.getElementById('item-selector').focus();
   }
 
@@ -42,10 +42,7 @@ export class ItemSelectorComponent implements OnInit {
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
         //   map(val => this.filter(val))
-        map(
-          item =>
-            item ? this.filter(item) : this.itemNames.slice()
-        )
+        map(item => (item ? this.filter(item) : this.itemNames.slice()))
       );
     });
   }
@@ -62,28 +59,5 @@ export class ItemSelectorComponent implements OnInit {
 
   addItemToInvoice(item) {
     this._inventoryService.handleNewInvoicePayload(item, this.quantity);
-  //   let isThere = false;
-  //   this._inventoryService.getItemById(item._id).subscribe(itemRes => {
-  //     item = itemRes.data;
-  //     item.orderQty = this.quantity;
-  //   });
-  //   // checkif the item is in the invoice already
-  //   for (let i = 0; i < this._inventoryService.OrderedItems.length; i++) {
-  //     // we are going through each item in the array here...
-  //     if (this._inventoryService.OrderedItems[i]._id === item._id) {
-  //       // if we are here, the item has been found already...
-  //       this._inventoryService.OrderedItems[i].orderQty += this.quantity;
-  //       isThere = true;
-  //       break;
-  //     }
-  //   }
-  //   // if we don't find the item in the array, do that logic here.
-  //   if (!isThere) {
-  //     this._inventoryService.OrderedItems.push(item);
-  //   }
-  //   // submit the modified array to the inventory service for safekeeping.
-  //   this._inventoryService.sendItemToInvoice(
-  //     this._inventoryService.OrderedItems
-  //   );
-  // }
+  }
 }
