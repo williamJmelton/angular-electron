@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 .container {
   height: 100%;
   display: flex;
@@ -45,11 +47,27 @@
 // }
 
 mat-row.highlight{
-    background: lightslategrey;
+    @include mat-elevation-transition;
+    @include mat-elevation(14);
+    transition: background-color 0.5s;
+    background: #1f1f1f;
 }
 
-mat-row:hover {
-    background-color: lightslategrey;
-    transition: 0.5s;
+// mat-row:hover {
+//     background-color: lightslategrey;
+//     transition: 0.5s;
+// }
+
+.elevate {
+  @include mat-elevation-transition;
+  @include mat-elevation(8);
+  transition: background-color 0.5s;
+  background-color: #353434;
 }
 
+.de-elevate {
+  @include mat-elevation-transition;
+  @include mat-elevation(0);
+  transition: background-color 0.5s;
+  background-color: #424242;
+}

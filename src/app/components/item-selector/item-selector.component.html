@@ -1,4 +1,8 @@
-<form style="display: flex" (submit)="submit()" class="example-form">
+<mat-card>
+  <mat-card-header style="display: flex; justify-content: center">
+    <mat-card-title>Manual Item Entry</mat-card-title>
+  </mat-card-header>
+  <form style="display: flex; justify-content: space-between" (submit)="submit()" class="example-form">
   <mat-form-field class="example-full-width">
     <input type="text" id="item-selector" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
@@ -11,4 +15,5 @@
     <input matInput type="number" id="quantity" [(ngModel)]="quantity" name="quantity">
   </mat-form-field>
   <button type="submit" style="display:none">hidden submit</button>
-</form>
+  </form>
+</mat-card>

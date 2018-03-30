@@ -10,12 +10,13 @@ mat-toolbar {
 }
 
 div.titleBarPadding {
-  ition: sticky;
+  position: sticky;
   position: -webkit-sticky;
   top: 0;
   z-index: 1000; 
+  background-color: #FFA726;
 }
 
 a {
-    color: purple;
+    color: lightcyan;
 }

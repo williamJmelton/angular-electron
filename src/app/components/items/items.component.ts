@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { InventoryService } from '../../providers/inventory.service';
 import { MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
@@ -30,6 +30,8 @@ export class ItemsComponent implements OnInit {
 
   constructor(
     private _inventoryService: InventoryService,
+    private renderer2: Renderer2,
+    private elementRef: ElementRef,
     private router: Router,
     public dialog: MatDialog
   ) {}
@@ -74,6 +76,7 @@ export class ItemsComponent implements OnInit {
   deleteItem(id: string) {
     console.log('deleting....');
     this._inventoryService.deleteItemById(id);
+    this.getData();
   }
 
   // -----------------------------------------------------------------------------------------
@@ -135,6 +138,16 @@ export class ItemsComponent implements OnInit {
       console.log('Item by scancode is: ');
       console.log(res);
     });
+  }
+
+  hoverRow(event) {
+    this.renderer2.removeClass(event.srcElement, 'de-elevate');
+    this.renderer2.addClass(event.srcElement, 'elevate');
+  }
+
+  leaveHoverRow(event) {
+    this.renderer2.removeClass(event.srcElement, 'elevate');
+    this.renderer2.addClass(event.srcElement, 'de-elevate');
   }
 }
 

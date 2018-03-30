@@ -1,9 +1,9 @@
-<div style="background-color: #fafafa">
-  <app-scancodes></app-scancodes>
-</div>
 <div style="display: flex; justify-content: center;">
-  <!-- <app-items mode="select" style="width: 75vh"></app-items> -->
-  <!-- <mat-divider [vertical]="true"></mat-divider> -->
-  <mat-divider></mat-divider>
-  <app-invoice style="width: 75vh"></app-invoice> 
+  <mat-card>
+    <app-scancodes class="margin"></app-scancodes>
+    <app-item-selector></app-item-selector>
+  </mat-card>
+  <mat-card style="width: 100%">
+    <app-invoice class="margin"></app-invoice> 
+  </mat-card>
 </div>

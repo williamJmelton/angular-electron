@@ -152,7 +152,10 @@ export class InventoryService {
   deleteItemById(id: string) {
     console.log('service sending req to server');
     const deleteByIdURL = `${this.itemUrl}/${id}`;
-    return this.http.delete(deleteByIdURL);
+    console.log('delete url is' , deleteByIdURL);
+    return this.http.delete(deleteByIdURL).subscribe(res => {
+      console.log('the delete result is:', res);
+    })
   }
 
   // Default Error handling method.

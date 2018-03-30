@@ -49,7 +49,7 @@ export class ItemSelectorComponent implements OnInit {
 
   filter(val: string): string[] {
     return this.itemNames.filter(
-      option => option.name.toLowerCase().indexOf(val) === 0
+      option => option.name.toLowerCase().indexOf(val.toLowerCase()) === 0
     );
   }
 
